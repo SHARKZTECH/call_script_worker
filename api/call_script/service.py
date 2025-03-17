@@ -1,0 +1,15 @@
+import logging
+from tools.call_script_generator import generate_call_script
+
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
+
+
+class CallScriptService:
+    """Service to generate call scripts using tools.call_script_generator"""
+
+    @staticmethod
+    def get_call_script(user_name, call_reason, user_company, job_title, tone="Formal"):
+        """Wrapper method to fetch the call script from the generator."""
+        logger.info("📝 Generating call script via service layer...")
+        return generate_call_script(user_name, call_reason, user_company, job_title, tone)
