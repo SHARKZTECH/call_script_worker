@@ -21,7 +21,7 @@ def handler(event: Dict):
     call_script = service.get_call_script(
         user_name, call_reason, user_company, job_title, tone)
     return {
-        "call_script": call_script
+        "call_script":  f"```markdown\n{call_script.strip()}\n```"
     }
 
 

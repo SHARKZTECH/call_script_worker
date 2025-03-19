@@ -26,6 +26,6 @@ class CallScriptResource(Resource):
             user_name, call_reason, user_company, job_title, tone)
 
         if call_script:
-            return {"call_script": call_script}, 200
+            return {"call_script": f"```markdown\n{call_script.strip()}\n```"}, 200
         else:
             return {"error": "Failed to generate call script"}, 500

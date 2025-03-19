@@ -4,8 +4,8 @@ import ollama
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-# MODEL_NAME = "llama3.2:1b"
-MODEL_NAME = "llama3.1:8b"
+MODEL_NAME = "llama3.2:1b"
+# MODEL_NAME = "llama3.1:8b"
 
 
 def generate_call_script(user_name, call_reason, user_company, job_title, industry="General", tone="Formal"):
@@ -118,34 +118,6 @@ def generate_call_script(user_name, call_reason, user_company, job_title, indust
     except Exception as e:
         logger.error(f"❌ Error generating call script: {e}", exc_info=True)
         return None
-
-
-def main():
-    """Main function to execute the call script pipeline."""
-    logger.info("🚀 Running call script generation pipeline...")
-
-    call_script_formal = generate_call_script(
-        "Jack Davis", "Discuss partnership", "TechCorp", "CTO", tone="Formal")
-    call_script_casual = generate_call_script(
-        "Jack Davis", "Discuss partnership", "TechCorp", "CTO", tone="Casual")
-    call_script_persuasive = generate_call_script(
-        "Jack Davis", "Discuss partnership", "TechCorp", "CTO", tone="Persuasive")
-
-    if call_script_formal:
-        print("\n📞 **Formal Call Script:**\n")
-        print(call_script_formal)
-
-    if call_script_casual:
-        print("\n😃 **Casual Call Script:**\n")
-        print(call_script_casual)
-
-    if call_script_persuasive:
-        print("\n🔥 **Persuasive Call Script:**\n")
-        print(call_script_persuasive)
-
-
-if __name__ == "__main__":
-    main()
 
 
 def main():
