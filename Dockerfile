@@ -36,7 +36,10 @@ RUN curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py && \
 RUN curl -fsSL https://ollama.com/install.sh | bash
 
 # Pull the required Llama model
-RUN ollama pull llama3.1:8b
+# RUN ollama pull llama3.1:8b
+
+# Start Ollama service in the background & pull the model
+RUN ollama serve & sleep 5 && ollama pull llama3.1:8b
 
 
 COPY ./runpod_handler/handler.py .

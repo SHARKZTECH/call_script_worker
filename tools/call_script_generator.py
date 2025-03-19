@@ -4,8 +4,8 @@ import ollama
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-MODEL_NAME = "llama3.2:1b"
-# MODEL_NAME = "llama3.1:8b"
+# MODEL_NAME = "llama3.2:1b"
+MODEL_NAME = "llama3.1:8b"
 
 
 def generate_call_script(user_name, call_reason, user_company, job_title, industry="General", tone="Formal"):
