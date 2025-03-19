@@ -2,21 +2,35 @@ import traceback
 from flask import Flask, jsonify
 from flask_restful import Api
 from api.call_script.resources import CallScriptResource
+from api.call_script.provider import CallScriptModule
 from api.health.resource import Health
 from werkzeug.exceptions import default_exceptions, HTTPException
+from flask_injector import FlaskInjector
+from injector import Module
+from typing import List, Optional
+
 
 HEALTH_ROUTE = "/health"
 CALL_SCRIPT_ROUTE = "/"
 
 
-def create_app():
+def create_modules() -> List[Module]:
+    return [CallScriptModule()]
+
+
+def create_app(modules: Optional[List[Module]] = None) -> Flask:
     app = Flask(__name__)
     api = Api(app, catch_all_404s=True)
+    app = _setup_json_error_handling(app)
 
     api.add_resource(Health, HEALTH_ROUTE)
     api.add_resource(CallScriptResource, CALL_SCRIPT_ROUTE)
 
-    app = _setup_json_error_handling(app)
+    if modules is None:
+        modules = create_modules()
+
+    flask_injector = FlaskInjector(app=app, modules=modules)
+    app.injector = flask_injector.injector
 
     return app
 

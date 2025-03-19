@@ -1,0 +1,9 @@
+{
+  "input": {
+    "user_name": ["Jack Davis"],
+    "call_reason": ["Discuss partnership"],
+    "user_company": ["TechCorp"],
+    "job_title":["CTO"],   
+    "speed_multiplier": "1"
+  }
+}
