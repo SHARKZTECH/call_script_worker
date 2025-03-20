@@ -8,7 +8,7 @@ logger = logging.getLogger(__name__)
 MODEL_NAME = "llama3.1:8b"
 
 
-def generate_call_script(user_name, call_reason, user_company, job_title, industry="General", tone="Formal"):
+def generate_call_script(user_name, call_reason, user_company, job_title, industry="General", tone="Formal", language="english"):
     """Generate a structured, dynamic, and conversational sales call script following all best practices."""
 
     try:
@@ -101,6 +101,8 @@ def generate_call_script(user_name, call_reason, user_company, job_title, indust
         - **Tone:** {tone_instruction}
 
         Generate this call script **exactly** in the structured format above, making it **dynamic, engaging, and customer-focused**.
+
+        The script should be in user's langauge {language}
         """
 
         # Call Ollama's API for script generation
@@ -125,11 +127,11 @@ def main():
     logger.info("🚀 Running call script generation pipeline...")
 
     call_script_formal = generate_call_script(
-        "Jack Davis", "Discuss partnership", "TechCorp", "CTO", tone="Formal")
+        "Jack Davis", "Discuss partnership", "TechCorp", "CTO", tone="Formal", language="english")
     call_script_casual = generate_call_script(
-        "Jack Davis", "Discuss partnership", "TechCorp", "CTO", tone="Casual")
+        "Jack Davis", "Discuss partnership", "TechCorp", "CTO", tone="Casual", language="spanish")
     call_script_persuasive = generate_call_script(
-        "Jack Davis", "Discuss partnership", "TechCorp", "CTO", tone="Persuasive")
+        "Jack Davis", "Discuss partnership", "TechCorp", "CTO", tone="Persuasive", language="german")
 
     if call_script_formal:
         print("\n📞 **Formal Call Script:**\n")

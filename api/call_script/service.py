@@ -9,7 +9,7 @@ class CallScriptService:
     """Service to generate call scripts using tools.call_script_generator"""
 
     @staticmethod
-    def get_call_script(user_name, call_reason, user_company, job_title, tone="Formal"):
+    def get_call_script(user_name, call_reason, user_company, job_title, tone="Formal", language="english"):
         """Wrapper method to fetch the call script from the generator."""
         logger.info("📝 Generating call script via service layer...")
-        return generate_call_script(user_name, call_reason, user_company, job_title, tone)
+        return generate_call_script(user_name, call_reason, user_company, job_title, tone, language)

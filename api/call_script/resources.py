@@ -21,9 +21,10 @@ class CallScriptResource(Resource):
         user_company = data["user_company"]
         job_title = data["job_title"]
         tone = data.get("tone", "Formal")
+        language = data.get("language", "english")
 
         call_script = CallScriptService.get_call_script(
-            user_name, call_reason, user_company, job_title, tone)
+            user_name, call_reason, user_company, job_title, tone, language)
 
         if call_script:
             return {"call_script": f"```markdown\n{call_script.strip()}\n```"}, 200
