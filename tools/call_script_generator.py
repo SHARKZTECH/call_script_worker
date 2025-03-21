@@ -42,6 +42,7 @@ def generate_call_script(user_name, call_reason, user_company, job_title, indust
         prompt = f"""
         You are a professional sales agent making a cold call to a potential customer. 
         Follow this **exact structure** to generate an engaging and effective call script:
+        Answer the following call script generation request in {language}
 
         ---
         **Admin Approach - Connecting with the Decision Maker (DM)**  
