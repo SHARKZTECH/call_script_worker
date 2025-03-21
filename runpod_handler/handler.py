@@ -17,9 +17,10 @@ def handler(event: Dict):
     user_company = event['input']["user_company"]
     job_title = event['input']["job_title"]
     tone = event['input'].get("tone", "Formal")
+    language = event['input'].get("language", "english")
 
     call_script = service.get_call_script(
-        user_name, call_reason, user_company, job_title, tone)
+        user_name, call_reason, user_company, job_title, tone, language)
     return {
         "call_script":  f"```markdown\n{call_script.strip()}\n```"
     }
