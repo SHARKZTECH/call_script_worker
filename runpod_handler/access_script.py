@@ -16,6 +16,7 @@ json_data = {
         "call_reason": ["Discuss partnership"],
         "user_company": ["TechCorp"],
         "job_title": ["CTO"],
+        "language": ["spanish"],
         "speed_multiplier": "1"
     }
 }
