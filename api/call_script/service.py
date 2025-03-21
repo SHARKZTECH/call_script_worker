@@ -1,8 +1,9 @@
 import logging
 from tools.call_script_generator import generate_call_script
+from tools.logger import setup_logger
 
-logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger(__name__)
+
+logger = setup_logger(__name__)
 
 
 class CallScriptService:

@@ -56,12 +56,11 @@ def _setup_json_error_handling(app):
             response.status_code = ex.code
         else:
             response = jsonify(data)
-            response.status_code = 500  # Internal Server Error
+            response.status_code = 500
 
         return response
 
-    # Register error handlers **ONLY for valid HTTP status codes**
-    for code in list(default_exceptions.keys()):  # Only standard HTTP error codes
+    for code in list(default_exceptions.keys()):
         app.register_error_handler(code, make_json_error)
 
     app.register_error_handler(Exception, make_json_error)

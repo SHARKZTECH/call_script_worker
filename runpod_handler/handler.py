@@ -3,15 +3,19 @@ from typing import Dict
 
 from api.call_script.service import CallScriptService
 from api.app import create_app
+from tools.logger import setup_logger
 
-print("Starting RunPod handler...")
+
+logger = setup_logger(__name__)
+
+logger.info("Starting RunPod handler...")
 app = create_app()
 service: CallScriptService = app.injector.get(CallScriptService)
-print("Handler loaded")
+logger.info("Handler loaded")
 
 
 def handler(event: Dict):
-    print(f"Running inference on {event}")
+    logger.info(f"Running inference on {event}")
     input_data = event['input']
 
     def unwrap(value):

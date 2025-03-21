@@ -1,8 +1,9 @@
 import logging
 import ollama
+from tools.logger import setup_logger
 
-logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger(__name__)
+
+logger = setup_logger(__name__)
 
 # MODEL_NAME = "llama3.2:1b"
 MODEL_NAME = "llama3.1:8b"
@@ -17,7 +18,6 @@ def generate_call_script(user_name, call_reason, user_company, job_title, indust
         job_title = job_title or "Unknown Role"
         industry = industry or "General"
 
-        # Define tone variations
         tone_descriptions = {
             "Formal": "Use a professional, business-oriented tone, which is best for corporate and high-stakes scenarios.",
             "Casual": "Use a friendly, informal tone, which is best for engaging leads and building rapport quickly.",
@@ -26,7 +26,6 @@ def generate_call_script(user_name, call_reason, user_company, job_title, indust
         tone_instruction = tone_descriptions.get(
             tone, "Use a formal, professional tone.")
 
-        # Industry-Specific Value Proposition (More dynamic)
         industry_benefits = {
             "Technology": f"optimize workflows and improve operational efficiency using AI-driven solutions that adapt to {user_company}'s needs.",
             "Finance": f"enhance financial planning through data-driven insights and automation, streamlining {user_company}'s financial management.",
@@ -38,7 +37,6 @@ def generate_call_script(user_name, call_reason, user_company, job_title, indust
         value_proposition = industry_benefits.get(
             industry, industry_benefits["General"])
 
-        # Strictly follow example script structure
         prompt = f"""
         You are a professional sales agent making a cold call to a potential customer. 
         Follow this **exact structure** to generate an engaging and effective call script:
@@ -106,11 +104,10 @@ def generate_call_script(user_name, call_reason, user_company, job_title, indust
         The script should be in user's langauge {language}
         """
 
-        # Call Ollama's API for script generation
         response = ollama.chat(
             model=MODEL_NAME,
             messages=[{"role": "user", "content": prompt}],
-            options={"temperature": 0.5}  # Balanced for precision & engagement
+            options={"temperature": 0.5}
         )
 
         if "message" in response and "content" in response["message"]:
